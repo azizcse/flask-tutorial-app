@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1>Tutorial </h1>
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">Tutorial ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Description</th>
+                <th scope="col">Enroll</th>
+                <th scope="col">Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for data in tutorials %}
+            <tr>
+                <td scope="row">{{ data.id }}
+                <td>{{ data.name }}</td>
+                <td>{{ data.price }}</td>
+                <td>{{ data.description }}</td>
+                <td>
+                    <form action="{{ url_for('enrollment') }}" method="POST">
+                        <input type="hidden" name="tutorial_id" value="{{data.id}}">
+                        <input type="hidden" name="name" value="{{ data.name }}">
+                        <button>Enroll</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="{{url_for('delete_tutorial')}}" method="POST">
+                        <input type="hidden" name="tutorial_id" value="{{ data.id }}">
+                        <button>Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
