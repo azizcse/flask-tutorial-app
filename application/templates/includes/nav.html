@@ -24,6 +24,11 @@
             {% else %}
             <li class="nav-item"><a href="{{ url_for('logout') }}" class="nav-link">Logout</a></li>
             {% endif %}
+            <li class="nav-item"><a href="{{ url_for('example_form')}}"
+                                    class="nav-link {% if example_form %}active{% endif %}">Example form</a></li>
+
+             <li class="nav-item"><a href="{{ url_for('google_map')}}"
+                                    class="nav-link {% if google_map %}active{% endif %}">Google map</a></li>
         </ul>
     </nav>
     <hr style="clear:both">

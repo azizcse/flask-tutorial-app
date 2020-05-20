@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12 text-center">
+        <h1>Welcome to Universal Tech Academy.</h1>
+        <form name="register" , action="" , method="post" , novalidate>
+            <fieldset class="form-group">
+                <legend>{{ title }}</legend>
+                {{ form.hidden_tag() }}
+
+                {{ form.first_name.label }}
+                {{ form.first_name(size=15) }}
+                {% for error in form.first_name.errors %}
+                <span class="error-message">{{ error }}</span>
+                {% endfor %}
+                <br>
+                {{ form.last_name.label }}
+                {{ form.last_name(size=15) }}
+                {% for error in form.last_name.errors %}
+                <span class="error-message">{{ error }}</span>
+                {% endfor %}
+                <br>
+                {{ form.subject.label }}
+                {{ form.subject() }}
+                {% for error in form.subject.errors %}
+                <span class="error-message">{{ error }}</span>
+                {% endfor %}
+                <br>
+                {{ form.radio_field.label }}
+                {{ form.radio_field() }}
+                {% for error in form.radio_field.errors %}
+                <span class="error-message">{{ error }}</span>
+                {% endfor %}
+                <br>
+                {{ form.checkbox.label }}
+                {{ form.checkbox() }}
+                {% for error in form.checkbox.errors %}
+                <span class="error-message">{{ error }}</span>
+                {% endfor %}
+                <br>
+
+                {{ form.submit() }}
+
+            </fieldset>
+        </form>
+    </div>
+</div>
+{% endblock %}

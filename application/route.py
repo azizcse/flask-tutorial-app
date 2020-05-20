@@ -1,6 +1,6 @@
 from application import app, db
 from flask import render_template, session, redirect, url_for, flash, request, jsonify
-from application.forms import LoginForm, RegistrationForm, AddTutorial
+from application.forms import LoginForm, RegistrationForm, AddTutorial, StudentForm
 from application.models import User, Tutorial, user_schema, users_schema, tutorial_schema, tutorials_schema
 from flask_jwt_extended import create_access_token, jwt_required
 
@@ -15,6 +15,28 @@ def db_create():
 def db_drop():
     db.drop_all()
     print('Database dropped!')
+
+
+@app.route('/google_map', methods=['get', 'post'])
+def google_map():
+    return render_template('google_map.html', google_map=True)
+
+
+@app.route('/example_form', methods=['post', 'get'])
+def example_form():
+    form = StudentForm()
+    if form.validate_on_submit():
+        first_name = form.first_name.data
+        last_name = form.last_name.data
+        subject = form.subject.data
+        radio = form.radio_field.data
+
+        print(first_name)
+        print(last_name)
+        print(subject)
+        print(radio)
+
+    return render_template('example_form.html', form=form, example_form=True)
 
 
 @app.route('/')
